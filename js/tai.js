@@ -328,7 +328,7 @@ function KTmatKhau(password) {
     )
     return x
 }
-// Hàm kiểm tra người dùng nhập ngày làm---------------------------------------chưa làm
+// Hàm kiểm tra người dùng nhập ngày làm
 function KTngayLam(ngayLam) {
     var tb = DOM('#tbNgay')
     var testNgayLam = /^(0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])[\/\-]\d{4}$/ //mm/dd/yyyy or mm-dd-yyyy
