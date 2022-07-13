@@ -84,6 +84,7 @@ DOM('#btnThemNV').onclick = function () {
         clearForm()
     }
 }
+
 //Hàm xoá nhân viên
 function xoaNhanVien(x) {
     var length = mangDSNV.length
@@ -95,6 +96,7 @@ function xoaNhanVien(x) {
     }
     render(mangDSNV)
 }
+
 // Hàm sửa nhân viên
 function suaNhanVien(x) {
     clearThongBao()
@@ -145,6 +147,7 @@ DOM('#btnCapNhat').onclick = function () {
         DOM('#header-title').innerHTML = 'Cập nhật TK: ' + tknv
     }
 }
+
 // Hàm in ra giao diện các đối tượng trong danhsachNV
 function render(Array) {
     var table = ''
@@ -224,7 +227,7 @@ function KTtknv(tknv) {
     var tb = DOM('#tbTKNV')
     var x = true
     var tknvTest = /^[0-9]+$/
-    if (tknv == '') {
+    if (tknv.trim() == '') {
         tb.style.display = 'block'
         tb.innerHTML = 'Không để trống'
         x = false
@@ -262,7 +265,7 @@ function KTten(name) {
     var tb = DOM('#tbTen')
     var x = true
     var nameTest = /^[a-zA-Z ]{1,}$/g
-    if (name == '') {
+    if (name.trim() == '') {
         tb.style.display = 'block'
         tb.innerHTML = 'Không để trống'
         x = false
@@ -292,7 +295,7 @@ function KTemail(email) {
     var tb = DOM('#tbEmail')
     var x = true
     var emailTest = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    if (email == '') {
+    if (email.trim() == '') {
         tb.style.display = 'block'
         tb.innerHTML = 'Không để trống'
         x = false
@@ -310,7 +313,7 @@ function KTmatKhau(password) {
     var tb = DOM('#tbMatKhau')
     var testMK = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{0,}$/
     var x = true
-    if (password == '') {
+    if (password.trim() == '') {
         tb.style.display = 'block'
         tb.innerHTML = 'Không để trống'
         x = false
@@ -320,7 +323,7 @@ function KTmatKhau(password) {
         x = false
     } else if (!testMK.test(password)) {
         tb.style.display = 'block'
-        tb.innerHTML = 'Mật khẩu chứa ít nhất 1 ký tự số, 1 ký tự in hoa, 1 ký tự đặc biệt'
+        tb.innerHTML = 'Mật khẩu chứa ít nhất 1 ký tự số, 1 ký tự in hoa, 1 ký tự thường, 1 ký tự đặc biệt'
         x = false
     }
     else (
@@ -350,7 +353,7 @@ function KTngayLam(ngayLam) {
 function KTluongCB(luongCB) {
     var tb = DOM('#tbLuongCB')
     var x = true
-    if (luongCB == '') {
+    if (luongCB.trim() == '') {
         tb.style.display = 'block'
         tb.innerHTML = 'Không để trống'
         x = false
@@ -380,7 +383,7 @@ function KTChucVu(chucVu) {
 function KTgioLam(gioLam) {
     var tb = DOM('#tbGiolam')
     var x = true
-    if (gioLam == '') {
+    if (gioLam.trim() == '') {
         tb.style.display = 'block'
         tb.innerHTML = 'Không để trống'
         x = false
