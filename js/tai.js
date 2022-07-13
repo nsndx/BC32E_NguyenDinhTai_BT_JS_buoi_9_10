@@ -62,7 +62,7 @@ DANHSACHNHANVIEN.prototype.themNV = function (nv) {
 
 // Tạo biến DSNV khởi tạo từ hàm DANHSACHNHANVIEN để chứa các nhân viên
 var DSNV = new DANHSACHNHANVIEN()
-// Tạo biến chứa là mảng các đối tượng nhân viên
+// Tạo biến là mảng chứa các đối tượng nhân viên
 var mangDSNV = DSNV.danhsachNV
 
 // Cài đặt nút Thêm người dùng - In ra giao diện từ dữ liệu người dùng nhập vào form
@@ -291,7 +291,7 @@ function removeAscent(str) {
 function KTemail(email) {
     var tb = DOM('#tbEmail')
     var x = true
-    var emailTest = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/
+    var emailTest = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     if (email == '') {
         tb.style.display = 'block'
         tb.innerHTML = 'Không để trống'
@@ -305,9 +305,10 @@ function KTemail(email) {
     }
     return x
 }
-// Hàm kiểm tra người dùng nhập mật khẩu----------------------------------chưa làm
+// Hàm kiểm tra người dùng nhập mật khẩu
 function KTmatKhau(password) {
     var tb = DOM('#tbMatKhau')
+    var testMK = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{0,}$/
     var x = true
     if (password == '') {
         tb.style.display = 'block'
@@ -317,7 +318,12 @@ function KTmatKhau(password) {
         tb.style.display = 'block'
         tb.innerHTML = 'Mật khẩu từ 6-10 ký tự'
         x = false
-    } else (
+    } else if (!testMK.test(password)) {
+        tb.style.display = 'block'
+        tb.innerHTML = 'Mật khẩu chứa ít nhất 1 ký tự số, 1 ký tự in hoa, 1 ký tự đặc biệt'
+        x = false
+    }
+    else (
         tb.style.display = 'none'
     )
     return x
@@ -325,10 +331,15 @@ function KTmatKhau(password) {
 // Hàm kiểm tra người dùng nhập ngày làm---------------------------------------chưa làm
 function KTngayLam(ngayLam) {
     var tb = DOM('#tbNgay')
+    var testNgayLam = /^(0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])[\/\-]\d{4}$/ //mm/dd/yyyy or mm-dd-yyyy
     var x = true
     if (ngayLam == '') {
         tb.style.display = 'block'
         tb.innerHTML = 'Không để trống'
+        x = false
+    } else if (!testNgayLam.test(ngayLam)) {
+        tb.style.display = 'block'
+        tb.innerHTML = 'Ngày không đúng định dạng mm/dd/yyyy'
         x = false
     } else {
         tb.style.display = 'none'
